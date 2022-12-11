@@ -1,6 +1,12 @@
 from pytube import YouTube
+import shutil
+# https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
-video = YouTube("https://www.youtube.com/watch?v=dQw4w9WgXcQ")
-print(video.title)
+url = YouTube(input("Video url: "))
+path = input("Path: ")
+print(f"Downloading {url.title}...")
 
-video.streams.get_highest_resolution().download()
+video = url.streams.get_highest_resolution().download()
+print("Done!")
+
+shutil.move(video, path)
