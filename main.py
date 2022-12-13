@@ -14,11 +14,13 @@ def get_path():
 
 def download(file_format):
     url = YouTube(header.get())
+    root.title(f"Downloading {url.title}")
     if file_format == "mp4":
         video = url.streams.get_highest_resolution().download()
     else:
         video = url.streams.get_by_itag(251).download()
     shutil.move(video, path)
+    root.title("Done :D")
 
 
 canvas = Canvas(root, width=600, height=350)
@@ -36,6 +38,6 @@ Button(root, text="Select", font=("Arial", 8, "bold"), padx=10, pady=5, command=
 
 Label(root, text="Format:", font=("Arial", 12, "bold")).place(x=50, y=300, anchor="center")
 Button(root, text="MP4", font=("Arial", 8, "bold"), padx=10, pady=5, command=lambda: download("mp4")).place(x=125, y=300, anchor="w")
-Button(root, text="WEBM", font=("Arial", 8, "bold"), padx=10, pady=5, command=lambda: download("mp3")).place(x=180, y=300, anchor="w")
+Button(root, text="WEBM", font=("Arial", 8, "bold"), padx=10, pady=5, command=lambda: download("webm")).place(x=180, y=300, anchor="w")
 
 root.mainloop()
